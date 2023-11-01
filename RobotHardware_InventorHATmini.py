@@ -21,7 +21,7 @@ class Robot(RobotInterface):
         GEAR_RATIO = 50                         # The gear ratio of the motors
         
         # Create a new InventorHATMini (this will init the LEDs so needs sudo privileges)
-        self.board = InventorHATMini(motor_gear_ratio=GEAR_RATIO,init_leds=False)
+        self.board = InventorHATMini(motor_gear_ratio=GEAR_RATIO,init_leds=True)
 
         # Access the motors from Inventor and enable them
         self.m1 = self.board.motors[MOTOR_A]
@@ -34,8 +34,8 @@ class Robot(RobotInterface):
         # Set the motor and encoder's directions for this robot
         self.m1.direction(NORMAL_DIR)
         self.enc1.direction(NORMAL_DIR)
-        self.m2.direction(REVERSED_DIR)
-        self.enc2.direction(REVERSED_DIR)
+        self.m2.direction(NORMAL_DIR)
+        self.enc2.direction(NORMAL_DIR)
 
         # Enable the motors
         self.m1.enable()

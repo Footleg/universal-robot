@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Run Audio Service
+Comment=Start my audio server for robot sounds
+NoDisplay=false
+Exec=sh /home/pi/runaudioserver.sh
+NotShowIn=GNOME;KDE;XFCE;

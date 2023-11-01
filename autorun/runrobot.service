@@ -1,0 +1,14 @@
+[Unit]
+Description=Robot Runner
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/python3 /home/pi/universal-robot/UniversalRobot.py
+User=root
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=graphical.target
