@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-""" Example of a robot using tank steering with two motors for left and right tracks.
-    This robot uses the Intentor HAT mini board from Pimoroni.
+"""
+    Hardware implementation of the Universal Robot interface for the
+    Inventor HAT mini board from Pimoroni.
 """
 from robotinterface import RobotInterface
 from inventorhatmini import InventorHATMini, MOTOR_A, MOTOR_B, NUM_LEDS
@@ -16,12 +17,17 @@ class Robot(RobotInterface):
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def __init__(self):
+    """
+        Constructor for robot hardware interface. To use LEDs on this hardware
+        the program needs to be run as sudo, and then call the constructor with
+        the withSudo argument = True
+    """
+    def __init__(self, withSudo = False):
         # Constants
         GEAR_RATIO = 50                         # The gear ratio of the motors
         
         # Create a new InventorHATMini (this will init the LEDs so needs sudo privileges)
-        self.board = InventorHATMini(motor_gear_ratio=GEAR_RATIO,init_leds=True)
+        self.board = InventorHATMini(motor_gear_ratio=GEAR_RATIO,init_leds=withSudo)
 
         # Access the motors from Inventor and enable them
         self.m1 = self.board.motors[MOTOR_A]
@@ -72,7 +78,7 @@ class Robot(RobotInterface):
         self.m1.speed(-leftMotor/100)
         self.m2.speed(rightMotor/100)
     
-    def getEncoderCount(self, motorIndex: int):
+    def getEncoderCount(self, motorIndex: int) -> int:
         """
             Read the position of the specified encoder.
             Encoders are referenced by index from 0 to n corresponding
@@ -142,4 +148,9 @@ class Robot(RobotInterface):
             Set the colour of all RGB LEDs on the robot
         """
         self.board.leds.clear()
-        
+
+    def buttonPressed(self, btnIndex: int) -> int:
+        if btnIndex == 0:
+            return self.board.switch_pressed()
+        else:
+            return False

@@ -54,7 +54,7 @@ class RobotInterface:
         """
         pass
     
-    def getEncoderCount(self, motorIndex: int):
+    def getEncoderCount(self, motorIndex: int) -> int:
         """
             Read the position of the specified encoder.
             Encoders are referenced by index from 0 to n corresponding
@@ -106,3 +106,10 @@ class RobotInterface:
             Set the colour of all RGB LEDs on the robot
         """
         pass
+
+    def buttonPressed(self, btnIndex: int) -> int:
+        """
+            Return pressed state of requested button
+        """
+        return False
+        

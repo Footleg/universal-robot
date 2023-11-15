@@ -39,16 +39,19 @@ print(f"Encoders A: {robot.getEncoderCount(0)}; B: {robot.getEncoderCount(1)};")
 
 # Start motor A
 robot.setMotorPower(0,100)
-sleep(2)
-print(f"Encoders A: {robot.getEncoderCount(0)}; B: {robot.getEncoderCount(1)};")
+for i in range(12):
+    sleep(0.25)
+    print(f"Encoders A: {robot.getEncoderCount(0)}; B: {robot.getEncoderCount(1)};")
+
 # Stop motor A and start motor B in reverse
 robot.setMotorsPower(0,-100)
-sleep(2)
-print(f"Encoders A: {robot.getEncoderCount(0)}; B: {robot.getEncoderCount(1)};")
+for i in range(12):
+    sleep(0.25)
+    print(f"Encoders A: {robot.getEncoderCount(0)}; B: {robot.getEncoderCount(1)};")
 # Drop motor B to half speed
 robot.setMotorPower(1,-50)
 print(f"Encoders A: {robot.getEncoderCount(0)}; B: {robot.getEncoderCount(1)};")
-sleep(2)
+sleep(3)
 # Stop both motors
 robot.setMotorsPower(0,0)
 print(f"Encoders A: {robot.getEncoderCount(0)}; B: {robot.getEncoderCount(1)};")
@@ -84,7 +87,7 @@ for i in range(100):
             ledDir = 1
             ledPos = 0
 
-    print(f"LED pos: {ledPos}")
+    #print(f"LED pos: {ledPos}")
     sleep(0.01)
 
 
